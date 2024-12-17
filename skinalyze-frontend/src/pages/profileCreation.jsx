@@ -60,11 +60,17 @@ const ProfileCreation = () => {
                  handleInputChange("skinConcerns", e.target.value)
                }
               >
+                <option value="">Select</option>
                 <option value="Blemishes">Blemishes</option>
                 <option value="Acne">Acne</option>
                 <option value="Dark Spots">Dark Spots</option>
                 <option value="Wrinkles">Wrinkles</option>
+                <option value="Blackheads and Whiteheads">Blackheads and Whiteheads</option>
+                <option value="Skin Texture Issues (rough, bumpy skin)">Skin Texture Issues (rough, bumpy skin)</option>
+                <option value="Sun Damage and Sunspots">Sun Damage and Sunspots</option>
+                <option value="Hyperpigmentation">Hyperpigmentation</option>
                 <option value="None">None</option>
+
               </select>
             </div>
             <div>
@@ -80,32 +86,40 @@ const ProfileCreation = () => {
             </div>
             <div>
             <label>Skincare Goals:</label>
-<input
-  type="text"
-  placeholder="E.g., Anti-aging, Brightening"
-  value={formData.skincareGoals}
-  onChange={(e) => handleInputChange("skincareGoals", e.target.value)}
-/>
+                <input
+                  type="text"
+                  placeholder="E.g., Anti-aging, Brightening"
+                  value={formData.skincareGoals}
+                  onChange={(e) => handleInputChange("skincareGoals", e.target.value)}
+                />
 
             </div>
             <div>
             <label>Preferred Product Type:</label>
-<select value={formData.productType} onChange={(e) => handleInputChange("productType", e.target.value)}>
-  <option value="">Select</option>
-  <option value="Serums">Serums</option>
-  <option value="Creams">Creams</option>
-  <option value="Toners">Toners</option>
-</select>
+              <select value={formData.productType} onChange={(e) => handleInputChange("productType", e.target.value)}>
+                  <option value="">Select</option>
+                  <option value="Serums">Serums</option>
+                  <option value="Cleansers">Cleansers</option>
+                  <option value="Exfoliants">Exfoliants</option>
+                  <option value="Toners">Toners</option>
+                  <option value="Sunscreens">Sunscreens</option>
+                  <option value="Face Oils">Face Oils</option>
+                  <option value="Eye Creams">Eye Creams</option>
+                  <option value="Spot Treatments">Spot Treatments</option>
+                  <option value="Masks">Masks</option>
+                  <option value="Lip Care">Lip Care</option>
+                  <option value="All">All</option>
+              </select>
 
             </div>
             <div>
             <label>Current Skincare Routine:</label>
-<select value={formData.routineLevel} onChange={(e) => handleInputChange("routineLevel", e.target.value)}>
-  <option value="">Select</option>
-  <option value="Basic (Cleanser, Moisturizer)">Basic</option>
-  <option value="Intermediate (Includes Serums, Sunscreen)">Intermediate</option>
-  <option value="Advanced (Includes Toners, Masks, etc.)">Advanced</option>
-</select>
+              <select value={formData.routineLevel} onChange={(e) => handleInputChange("routineLevel", e.target.value)}>
+                <option value="">Select</option>
+                <option value="Basic (Cleanser, Moisturizer)">Basic</option>
+                <option value="Intermediate (Includes Serums, Sunscreen)">Intermediate</option>
+                <option value="Advanced (Includes Toners, Masks, etc.)">Advanced</option>
+              </select>
 
             </div>
           </div>
