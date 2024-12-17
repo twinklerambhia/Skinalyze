@@ -12,8 +12,8 @@ const App = () => {
     <Router>
       <Layout>
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
-         
           <Route path="/profile-creation" element={<ProfileCreation />} />
           <Route path="/recommendationsPage" element={<RecommendationsPage />} />
           

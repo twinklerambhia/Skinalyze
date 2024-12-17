@@ -9,6 +9,10 @@ const ProfileCreation = () => {
   const [formData, setFormData] = useState({
     skinType: "",
     skinConcerns: "",
+    ageRange:"",
+    skincareGoals:"",
+    productType:"",
+    routineLevel:"",
     allergies: "",
     budget: "",
     preferredIngredients: "",
@@ -62,6 +66,47 @@ const ProfileCreation = () => {
                 <option value="Wrinkles">Wrinkles</option>
                 <option value="None">None</option>
               </select>
+            </div>
+            <div>
+              <label>Age Range:</label>
+                <select value={formData.ageRange} onChange={(e) => handleInputChange("ageRange", e.target.value)}>
+                  <option value="">Select</option>
+                  <option value="Under 18">Under 18</option>
+                  <option value="18-25">18-25</option>
+                  <option value="26-40">26-40</option>
+                  <option value="40+">40+</option>
+                </select>
+
+            </div>
+            <div>
+            <label>Skincare Goals:</label>
+<input
+  type="text"
+  placeholder="E.g., Anti-aging, Brightening"
+  value={formData.skincareGoals}
+  onChange={(e) => handleInputChange("skincareGoals", e.target.value)}
+/>
+
+            </div>
+            <div>
+            <label>Preferred Product Type:</label>
+<select value={formData.productType} onChange={(e) => handleInputChange("productType", e.target.value)}>
+  <option value="">Select</option>
+  <option value="Serums">Serums</option>
+  <option value="Creams">Creams</option>
+  <option value="Toners">Toners</option>
+</select>
+
+            </div>
+            <div>
+            <label>Current Skincare Routine:</label>
+<select value={formData.routineLevel} onChange={(e) => handleInputChange("routineLevel", e.target.value)}>
+  <option value="">Select</option>
+  <option value="Basic (Cleanser, Moisturizer)">Basic</option>
+  <option value="Intermediate (Includes Serums, Sunscreen)">Intermediate</option>
+  <option value="Advanced (Includes Toners, Masks, etc.)">Advanced</option>
+</select>
+
             </div>
           </div>
         );
