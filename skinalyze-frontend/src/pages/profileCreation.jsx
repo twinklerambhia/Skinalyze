@@ -3,7 +3,7 @@ import React ,{useState}from "react";
 import "react-step-progress-bar/styles.css";
 import { ProgressBar, Step } from "react-step-progress-bar";
 import "../styles/profileCreation.css";
-
+import axios from "axios";
 const ProfileCreation = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -64,12 +64,16 @@ const ProfileCreation = () => {
                 <option value="Blemishes">Blemishes</option>
                 <option value="Acne">Acne</option>
                 <option value="Dark Spots">Dark Spots</option>
-                <option value="Wrinkles">Wrinkles</option>
-                <option value="Blackheads and Whiteheads">Blackheads and Whiteheads</option>
-                <option value="Skin Texture Issues (rough, bumpy skin)">Skin Texture Issues (rough, bumpy skin)</option>
-                <option value="Sun Damage and Sunspots">Sun Damage and Sunspots</option>
-                <option value="Hyperpigmentation">Hyperpigmentation</option>
-                <option value="None">None</option>
+                <option value="Whitehead/Blackhead">Blackheads / Whiteheads</option>
+                <option value="Broken barrier">Broken barrier</option>
+                <option value="Sun protection">Sun Protection</option>
+                <option value="Pimples">Pimples</option>
+                <option value="Pores">Pores</option>
+                <option value="Irritation">Irritation</option>
+                <option value="Hydration">Hydration</option>
+
+                <option value="Skin soothing">Skin soothing</option>
+             
 
               </select>
             </div>
@@ -98,17 +102,21 @@ const ProfileCreation = () => {
             <label>Preferred Product Type:</label>
               <select value={formData.productType} onChange={(e) => handleInputChange("productType", e.target.value)}>
                   <option value="">Select</option>
-                  <option value="Serums">Serums</option>
-                  <option value="Cleansers">Cleansers</option>
-                  <option value="Exfoliants">Exfoliants</option>
-                  <option value="Toners">Toners</option>
-                  <option value="Sunscreens">Sunscreens</option>
-                  <option value="Face Oils">Face Oils</option>
-                  <option value="Eye Creams">Eye Creams</option>
-                  <option value="Spot Treatments">Spot Treatments</option>
-                  <option value="Masks">Masks</option>
-                  <option value="Lip Care">Lip Care</option>
+                  <option value="Serum">Serums</option>
+                  <option value="Cleanser">Cleansers</option>
+                  <option value="Exfoliator">Exfoliants</option>
+                  <option value="Toner">Toners</option>
+                  <option value="Sunscreen">Sunscreens</option>
+                  <option value="Face mask">Face mask</option>
+                  <option value="Face wash">Face wash</option>
+                  <option value="Cream">Cream</option>
+                  <option value="Lotion">Lotion</option>
+                  <option value="Face scrub">Face scrub</option>
+                  <option value="Moisturizer">Moisturizers</option>
+                  <option value="Mist">Mist</option>
+                  <option value="Oil">Oil</option>
                   <option value="All">All</option>
+
               </select>
 
             </div>
@@ -189,7 +197,19 @@ const ProfileCreation = () => {
         return null;
     }
   };
-
+  const [loading, setLoading] = useState(false);
+  const handleSubmit = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.post("http://localhost:5000/api/submitProfile", formData);
+      console.log("Profile saved:", response.data);
+      alert("Profile created successfully!");
+    } catch (error) {
+      console.error("Error submitting profile:", error);
+      alert("Failed to create profile");
+    }
+    setLoading(false);
+  };
   return (
     <div className="profile-creation">
       <ProgressBar
@@ -216,7 +236,7 @@ const ProfileCreation = () => {
       <div className="form-navigation">
         {step > 1 && <button onClick={handleBack}>Back</button>}
         {step < 3 && <button onClick={handleNext}>Next</button>}
-        {step === 3 && <button onClick={() => console.log(formData)}>Submit</button>}
+        {step === 3 && <button onClick={handleSubmit} disabled={loading}>{loading?"submitting...":"Submit"}</button>}
       </div>
     </div>
   );

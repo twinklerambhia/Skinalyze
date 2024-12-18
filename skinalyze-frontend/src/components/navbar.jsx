@@ -13,8 +13,8 @@ const Navbar = () => {
         </div>
       </div>
       <div className="nav-right">
-        
-        <Link to="/create-account">Sign Up/In</Link>
+  
+        <Link to="/create-account"></Link>
       </div>
     </nav>
   );

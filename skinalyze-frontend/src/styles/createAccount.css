@@ -90,21 +90,21 @@
   }
 
   .submit:hover {
-    background: #3a0087; /* Darker shade on hover */
-    transform: scale(1.05); /* Slight scale effect on hover */
+    background: #3a0087; 
+    transform: scale(1.05); 
   }
   
   .submit:active {
-    background: #2c0069; /* Even darker shade when clicked */
+    background: #2c0069; 
   }
   
   .submit.gray {
-    background: #b0b0b0; /* Gray background for the disabled state */
-    cursor: pointer; /* Disabled pointer */
+    background: #b0b0b0; 
+    cursor: pointer; 
   }
   .submit.gray:hover {
-    background: #b0b0b0; /* No hover effect when disabled */
-    transform: none; /* No scaling when disabled */
+    background: #b0b0b0; 
+    transform: none; 
   }
   
  

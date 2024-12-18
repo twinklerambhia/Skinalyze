@@ -1,56 +1,56 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "../styles/recommendations.css"
-const RecommendationsPage = ({ userId }) => {
-  const [products, setProducts] = useState([]); // Store fetched recommendations
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+// src/components/recommendationsPage.jsx
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import '../styles/recommendationsPage.css';
+
+const RecommendationsPage = () => {
+  const [recommendations, setRecommendations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch recommendations from the backend
+    
     const fetchRecommendations = async () => {
       try {
-        setLoading(true); // Start loading
-        const response = await axios.get(`/api/recommendations?userId=${userId}`);
-        setProducts(response.data); // Populate products with API response
-        setLoading(false); // Stop loading
+        const response = await axios.get('http://localhost:5000/api/recommendations');
+        setRecommendations(response.data.recommendations);
+        setLoading(false);
       } catch (err) {
-        setError("Failed to fetch recommendations. Please try again.");
-        setLoading(false); // Stop loading
+        setError('Failed to fetch recommendations');
+        setLoading(false);
       }
     };
 
     fetchRecommendations();
-  }, [userId]);
+  }, []);
 
   if (loading) {
-    return <div>Loading recommendations...</div>;
+    return <div className="loading">Loading recommendations...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>;
-  }
-
-  if (products.length === 0) {
-    return <div>No recommendations available. Update your profile to see suggestions!</div>;
+    return <div className="error">{error}</div>;
   }
 
   return (
-    <div>
-      <h2>Recommended Products for You</h2>
-      <div className="product-grid">
-        {products.map((product) => (
-          <div key={product.id} className="product-card">
-            <img src={product.image} alt={product.name} className="product-image" />
-            <h3>{product.name}</h3>
-            <p>{product.description}</p>
-            <p>₹{product.price}</p>
-            <a href={product.link} target="_blank" rel="noopener noreferrer">
-              View Product
-            </a>
-          </div>
-        ))}
-      </div>
+    <div className="recommendations-container">
+      <h1>Recommended Skincare Products</h1>
+      {recommendations.length === 0 ? (
+        <p>No recommendations found.</p>
+      ) : (
+        <div className="products">
+          {recommendations.map((product, index) => (
+            <div key={index} className="product-card">
+              <img src={product.productPic} alt={product.product} className="product-image" />
+              <div className="product-info">
+                <h2>{product.product}</h2>
+                <p>{product.skinConcern}</p>
+                <a href={product.productUrl} target="_blank" rel="noopener noreferrer">View Product</a>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

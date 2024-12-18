@@ -2,9 +2,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #4caf50; /* A pleasant green shade */
+    background-color: #6A1E55; /* A pleasant green shade */
     padding: 10px 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: white;
+    
   }
   
   .navbar-logo {
@@ -37,7 +39,7 @@
   
   .navbar-auth button {
     background-color: white;
-    color: #4caf50;
+    color: #6A1E55;
     border: 1px solid white;
     border-radius: 5px;
     padding: 5px 10px;
